@@ -4,10 +4,11 @@ import { ApiClient } from "./ApiClient";
 import { AuthResponse } from "./types/responses";
 import { CollectionType } from "./CollectionType";
 import {
+    CollectionsGetType,
+    CollectionsSendType,
     SendUserFormType,
     StrapiFileType,
     TypeMap,
-    TypeOf,
     UserLoginForm,
     UserType,
 } from "./types/models";
@@ -19,14 +20,14 @@ export class StrapiClient<T extends TypeMap> extends ApiClient {
         super(url + "/api");
     }
 
-    signUp(user: SendUserFormType<T, "user">): Promise<AuthResponse<UserType<T, "user">>> {
-        return this.post<AuthResponse<UserType<T, "user">>>("/auth/local/register", user).then(
+    signUp(user: SendUserFormType<T>): Promise<AuthResponse<UserType<T>>> {
+        return this.post<AuthResponse<UserType<T>>>("/auth/local/register", user).then(
             this.handleAuthResponse
         );
     }
 
-    signIn(user: UserLoginForm): Promise<AuthResponse<UserType<T, "user">>> {
-        return this.post<AuthResponse<UserType<T, "user">>>("/auth/local", user).then(
+    signIn(user: UserLoginForm): Promise<AuthResponse<UserType<T>>> {
+        return this.post<AuthResponse<UserType<T>>>("/auth/local", user).then(
             this.handleAuthResponse
         );
     }
@@ -35,17 +36,24 @@ export class StrapiClient<T extends TypeMap> extends ApiClient {
         removeCookie(API_TOKEN);
     }
 
-    uploadFile(data: FormData): Promise<StrapiFileType<T, "strapiFile">> {
+    isLoggedIn(): boolean {
+        return !!getCookie(API_TOKEN);
+    }
+
+    uploadFile(data: FormData): Promise<StrapiFileType<T>> {
         return this.post("/upload", data);
     }
 
-    getMe(): Promise<UserType<T, "user">> {
+    getMe(): Promise<UserType<T>> {
         return this.get("/users/me");
     }
 
-    collection = <C extends keyof T, I extends { get: unknown; send: unknown } = TypeOf<T, C>>(
-        collection: C
-    ) => new CollectionType<I["get"], I["send"]>(this, collection as string);
+    collection<C extends keyof T>(collection: C) {
+        return new CollectionType<CollectionsGetType<T, C>, CollectionsSendType<T, C>>(
+            this,
+            collection as string
+        );
+    }
 
     protected override getDefaultConfig(): AxiosRequestConfig {
         const token = getCookie(API_TOKEN);
@@ -58,8 +66,8 @@ export class StrapiClient<T extends TypeMap> extends ApiClient {
     }
 
     private readonly handleAuthResponse = (
-        res: AuthResponse<UserType<T, "user">>
-    ): AuthResponse<UserType<T, "user">> => {
+        res: AuthResponse<UserType<T>>
+    ): AuthResponse<UserType<T>> => {
         setCookie(API_TOKEN, res.jwt, 120);
 
         return res;

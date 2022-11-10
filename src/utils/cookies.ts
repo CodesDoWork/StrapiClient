@@ -1,4 +1,4 @@
-export const getCookie = (name: string): string => getCookies()[name];
+export const getCookie = (name: string): string | undefined => getCookies()[name];
 
 export const removeCookie = (name: string) => setCookie(name, "", -100);
 
