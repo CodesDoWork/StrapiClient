@@ -1,6 +1,6 @@
 {
     "name": "@codesdowork/strapi_client",
-    "version": "0.1.2",
+    "version": "0.1.1",
     "author": "Justin Konratt <codesdowork@gmail.com> (https://github.com/CodesDoWork)",
     "license": "ISC",
     "keywords": [
@@ -21,7 +21,7 @@
     "main": "./lib/index.js",
     "scripts": {
         "build": "tsc -p .",
-        "publish": "npm run build && npm version patch && npm publish --access public"
+        "patch": "npm run build && npm version patch && npm publish --access public"
     },
     "dependencies": {
         "axios": "^1.1.3"
