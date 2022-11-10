@@ -4,12 +4,6 @@ import { CollectionFindOneResponse, CollectionFindResponse, DataResponse } from 
 export class CollectionType<T, S> {
     constructor(private readonly client: ApiClient, private readonly name: string) {}
 
-    private buildPath(path?: string | number) {
-        const showSlash = path !== undefined && (typeof path !== "string" || !path.startsWith("?"));
-
-        return `/${this.name}${showSlash ? "/" : ""}${path ?? ""}`;
-    }
-
     getAll(options?: string): Promise<CollectionFindResponse<T>> {
         return this.client.get(this.buildPath(options));
     }
@@ -30,5 +24,11 @@ export class CollectionType<T, S> {
 
     delete(id: number): Promise<T> {
         return this.client.delete(this.buildPath(id));
+    }
+
+    private buildPath(path?: string | number) {
+        const showSlash = path !== undefined && (typeof path !== "string" || !path.startsWith("?"));
+
+        return `/${this.name}${showSlash ? "/" : ""}${path ?? ""}`;
     }
 }

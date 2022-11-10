@@ -1,3 +1,4 @@
-import { StrapiClient } from "./StrapiClient";
-
-export default StrapiClient;
+export { StrapiClient } from "./StrapiClient";
+export * from "./types/defaultTypes";
+export * from "./types/models";
+export * from "./types/responses";

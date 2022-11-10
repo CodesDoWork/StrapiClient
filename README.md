@@ -33,3 +33,5 @@ const strapi = new StrapiClient<StrapiTypes>("http://localhost:1337")
 You can add types for any collection and additionally for `user` and `strapiFile`.
 You can either add types for responses (`get`) and requests (`send`) or combine them directly
 as made for `todos` in the example above.
+
+> You can generate the types using the [strapi_tools cli](https://www.npmjs.com/package/@codesdowork/strapi_tools).

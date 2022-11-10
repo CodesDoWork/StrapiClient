@@ -3,15 +3,15 @@ import { getCookie, removeCookie, setCookie } from "./utils/cookies";
 import { ApiClient } from "./ApiClient";
 import { AuthResponse } from "./types/responses";
 import { CollectionType } from "./CollectionType";
+import { UserLoginForm } from "./types/models";
 import {
     CollectionsGetType,
     CollectionsSendType,
     SendUserFormType,
     StrapiFileType,
     TypeMap,
-    UserLoginForm,
     UserType,
-} from "./types/models";
+} from "./types/typeMapping";
 
 const API_TOKEN = "api_token";
 

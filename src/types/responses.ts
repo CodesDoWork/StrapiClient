@@ -1,3 +1,5 @@
+import { StrapiError, StrapiObject } from "./models";
+
 export type AuthResponse<U> = {
     jwt: string;
     user: U;
@@ -6,13 +8,6 @@ export type AuthResponse<U> = {
 export type StrapiErrorResponse = {
     data: null;
     error: StrapiError;
-};
-
-export type StrapiError = {
-    details: object;
-    message: string;
-    name: string;
-    status: number;
 };
 
 export type CollectionFindResponse<T> = DataResponse<StrapiObject<T>[]> & {
@@ -25,14 +20,6 @@ export type CollectionFindOneResponse<T> = DataResponse<StrapiObject<T>> & {
 
 export type DataResponse<T> = {
     data: T;
-};
-
-export type StrapiObject<T> = {
-    id: number;
-    attributes: T & {
-        createdAt: string;
-        updatedAt: string;
-    };
 };
 
 export type Pagination = {
