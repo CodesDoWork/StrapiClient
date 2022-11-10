@@ -5,7 +5,7 @@ export type UserLoginForm = {
     password: string;
 };
 
-export type TypeMap = Record<string, CollectionTypesType | unknown> & {
+export type TypeMap = Record<string, CollectionTypesType> & {
     user?: CollectionTypesType | unknown;
     strapiFile?: unknown;
 };
@@ -25,14 +25,14 @@ export type CollectionsSendType<
     K extends keyof T
 > = T[K] extends CollectionTypesType ? T[K]["send"] : T[K];
 
-export type SendUserFormType<T extends TypeMap> = T["user"] extends undefined
+export type SendUserFormType<T extends TypeMap> = undefined extends T["user"]
     ? DefaultSendUserForm
     : CollectionsSendType<T, "user">;
 
-export type StrapiFileType<T extends TypeMap> = T["strapiFile"] extends undefined
+export type StrapiFileType<T extends TypeMap> = undefined extends T["strapiFile"]
     ? DefaultStrapiFile
     : T["strapiFile"];
 
-export type UserType<T extends TypeMap> = T["user"] extends undefined
+export type UserType<T extends TypeMap> = undefined extends T["user"]
     ? DefaultUser
     : CollectionsGetType<T, "user">;
