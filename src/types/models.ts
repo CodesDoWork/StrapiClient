@@ -6,7 +6,7 @@ export type UserLoginForm = {
 };
 
 export type TypeMap = Record<string, CollectionTypesType | unknown> & {
-    user?: unknown;
+    user?: CollectionTypesType | unknown;
     strapiFile?: unknown;
 };
 

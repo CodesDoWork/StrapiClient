@@ -1,7 +1,17 @@
 {
-    "name": "strapi_client",
+    "name": "@codesdowork/strapi_client",
     "version": "0.1.0",
-    "author": "Justin Konratt",
+    "author": "Justin Konratt <codesdowork@gmail.com> (https://github.com/CodesDoWork)",
+    "license": "ISC",
+    "keywords": ["strapi", "rest", "api", "client", "web"],
+    "homepage": "https://github.com/CodesDoWork/StrapiClient",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/CodesDoWork/StrapiClient.git"
+    },
+    "bugs": {
+        "url": "https://github.com/CodesDoWork/StrapiClient/issues"
+    },
     "main": "./lib/index.js",
     "bin": {
         "strapi_tools": "./lib/index.js"
