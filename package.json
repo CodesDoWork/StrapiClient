@@ -1,9 +1,15 @@
 {
     "name": "@codesdowork/strapi_client",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author": "Justin Konratt <codesdowork@gmail.com> (https://github.com/CodesDoWork)",
     "license": "ISC",
-    "keywords": ["strapi", "rest", "api", "client", "web"],
+    "keywords": [
+        "strapi",
+        "rest",
+        "api",
+        "client",
+        "web"
+    ],
     "homepage": "https://github.com/CodesDoWork/StrapiClient",
     "repository": {
         "type": "git",
