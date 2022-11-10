@@ -13,11 +13,9 @@
         "url": "https://github.com/CodesDoWork/StrapiClient/issues"
     },
     "main": "./lib/index.js",
-    "bin": {
-        "strapi_tools": "./lib/index.js"
-    },
     "scripts": {
-        "build": "tsc -p ."
+        "build": "tsc -p .",
+        "publish": "npm run build && npm version patch && npm publish --access public"
     },
     "dependencies": {
         "axios": "^1.1.3"
