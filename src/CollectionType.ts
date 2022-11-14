@@ -1,5 +1,5 @@
 import { ApiClient } from "./ApiClient";
-import { CollectionFindOneResponse, CollectionFindResponse, DataResponse } from "./types/responses";
+import { CollectionFindResponse } from "./types/responses";
 
 export class CollectionType<T, S> {
     constructor(private readonly client: ApiClient, private readonly name: string) {}
@@ -8,15 +8,15 @@ export class CollectionType<T, S> {
         return this.client.get(this.buildPath(options));
     }
 
-    get(id: number): Promise<CollectionFindOneResponse<T>> {
+    get(id: number): Promise<T> {
         return this.client.get(this.buildPath(id));
     }
 
-    post(item: S): Promise<DataResponse<T>> {
+    post(item: S): Promise<T> {
         return this.client.post(this.buildPath(), { data: item });
     }
 
-    put(item: S & { id: number }): Promise<DataResponse<T>> {
+    put(item: S & { id: number }): Promise<T> {
         return this.client.put(this.buildPath(item.id), {
             data: item,
         });

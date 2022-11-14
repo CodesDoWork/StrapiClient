@@ -3,14 +3,6 @@ export type UserLoginForm = {
     password: string;
 };
 
-export type StrapiObject<T> = {
-    id: number;
-    attributes: T & {
-        createdAt: string;
-        updatedAt: string;
-    };
-};
-
 export type StrapiError = {
     details: object;
     message: string;
