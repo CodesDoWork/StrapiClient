@@ -26,7 +26,7 @@ export type SendUserFormType<T extends TypeMap> = undefined extends T["users"]
 
 export type StrapiFileType<T extends TypeMap> = undefined extends T["strapi-files"]
     ? DefaultStrapiFile
-    : T["strapi-files"];
+    : CollectionsGetType<T, "strapi-files">;
 
 export type UserType<T extends TypeMap> = undefined extends T["users"]
     ? DefaultUser
