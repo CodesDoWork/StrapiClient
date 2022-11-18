@@ -7,6 +7,7 @@ import { UserLoginForm } from "./types/models";
 import {
     CollectionsGetType,
     CollectionsSendType,
+    CollectionTypes,
     SendUserFormType,
     StrapiFileType,
     TypeMap,
@@ -48,7 +49,7 @@ export class StrapiClient<T extends TypeMap> extends ApiClient {
         return this.get("/users/me");
     }
 
-    collection<C extends keyof Omit<T, "user" | "strapiFile">>(collection: C) {
+    collection<C extends keyof CollectionTypes<T>>(collection: C) {
         return new CollectionType<CollectionsGetType<T, C>, CollectionsSendType<T, C>>(
             this,
             collection as string

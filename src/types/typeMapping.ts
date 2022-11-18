@@ -1,8 +1,8 @@
 import { DefaultSendUserForm, DefaultStrapiFile, DefaultUser } from "./defaultTypes";
 
 export type TypeMap = Record<string, CollectionTypesType> & {
-    user?: CollectionTypesType | unknown;
-    strapiFile?: unknown;
+    users?: CollectionTypesType | unknown;
+    "strapi-files"?: unknown;
 };
 
 export type CollectionTypesType = {
@@ -20,14 +20,16 @@ export type CollectionsSendType<
     K extends keyof T
 > = T[K] extends CollectionTypesType ? T[K]["send"] : T[K];
 
-export type SendUserFormType<T extends TypeMap> = undefined extends T["user"]
+export type SendUserFormType<T extends TypeMap> = undefined extends T["users"]
     ? DefaultSendUserForm
-    : CollectionsSendType<T, "user">;
+    : CollectionsSendType<T, "users">;
 
-export type StrapiFileType<T extends TypeMap> = undefined extends T["strapiFile"]
+export type StrapiFileType<T extends TypeMap> = undefined extends T["strapi-files"]
     ? DefaultStrapiFile
-    : T["strapiFile"];
+    : T["strapi-files"];
 
-export type UserType<T extends TypeMap> = undefined extends T["user"]
+export type UserType<T extends TypeMap> = undefined extends T["users"]
     ? DefaultUser
-    : CollectionsGetType<T, "user">;
+    : CollectionsGetType<T, "users">;
+
+export type CollectionTypes<T extends TypeMap> = Omit<T, "users" | "strapi-files">;
